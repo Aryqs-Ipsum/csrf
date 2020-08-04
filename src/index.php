@@ -39,9 +39,13 @@ class Token
      */
     public static function verify(string $string = self::$string)
     {
-        $session = $_SESSION[$string];
-        unset($session[$string]);
-        return $_POST[$string] == $session;
+        if(isset($_POST[$string]) && !empty($_POST[$string])) {
+            $session = $_SESSION[$string];
+            unset($session[$string]);
+            return $_POST[$string] == $session;
+        } else {
+            throw new \Exception('No post token found');
+        }
     }
 
     /**

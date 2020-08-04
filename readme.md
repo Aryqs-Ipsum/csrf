@@ -20,7 +20,7 @@ use aryqs\csrf\Token;
 require __DIR__ . '/vendor/autoload.php';
 
 # verify token
-if(isset($_POST['_token']) && Token::verify()) {
+if(Token::verify()) {
     # ...
 }
 ```
